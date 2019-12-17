@@ -1,10 +1,13 @@
 import web   
-from Models import RegisterModel
+from Models import RegisterModel, LoginModel
 
 urls = (
     '/', 'home',
+    '/login', 'login',
     '/register', 'register',
-    '/postregistration', 'postRegistration'
+    '/postregistration', 'postRegistration',
+    '/check-login', 'checkLogin'
+    
 )
 
 TEMPLATE_PATH = './Views/Templates'
@@ -17,6 +20,22 @@ render = web.template.render(TEMPLATE_PATH, base=BASE_FILE)
 class home:
     def GET(self):
         return render.home()
+
+class login:
+    def GET(self):
+        return render.login()
+
+class checkLogin:
+    def POST(self):
+        data = web.input()
+
+        login_model = LoginModel.LoginModel()
+        isCorrect = login_model.check_user(data)
+
+        if isCorrect:
+            return isCorrect
+
+        return "error"
 
 class register:
     def GET(self):
