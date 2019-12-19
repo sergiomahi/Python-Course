@@ -1,6 +1,6 @@
 
 <div class="container">
-    $if session['user'] == 'none':
+    $if session['user'] == None:
         <h1> Hello Soldier! </h1>
     $else:
         <h1>Hello $session['user']['username']</h1>

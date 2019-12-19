@@ -19,7 +19,7 @@ BASE_FILE = 'MainLayout'
 
 app = web.application(urls, globals())
 
-session = web.session.Session(app, web.session.DiskStore("sessions"), initializer={'user': 'none'})
+session = web.session.Session(app, web.session.DiskStore("sessions"), initializer={'user': None})
 session_data = session._initializer
 
 render = web.template.render(TEMPLATE_PATH, base=BASE_FILE, globals={'session': session_data, 'current_user': session_data["user"]})
@@ -48,6 +48,8 @@ class checkLogin:
 
 class logout:
     def GET(self):
+        session['user'] = None
+        session_data['user'] = None
         session.kill()
         return "success"
 
@@ -61,6 +63,7 @@ class postRegistration:
 
         reg_model = RegisterModel.RegisterModel()
         reg_model.insert_user(data)
+
         return data.username
 
 if __name__ == "__main__":
