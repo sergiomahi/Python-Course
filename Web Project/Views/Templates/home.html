@@ -1,12 +1,24 @@
+$def with (all_posts)
 
 <div class="container">
     $if session['user'] == None:
         <h1> Hello Soldier! </h1>
     $else:
-        <div class='post'>
+        <div class='post-card'>
             <form id="post-activity" class='post-box'>
                 <textarea name='content' class='post-input inside-post ' placeholder="What's new $session['user']['username']?"></textarea>
                 <button type="submit" id='post-button' class='btn btn-info btn-raised waves-effect inside-post'>Post</button>
             </form>
+        </div>
+
+    $for post in all_posts:
+        <div class="post-input post-card">
+            <div class='header'>
+                <div class='avatar'></div>
+                <a href='/profile'>$post['user']['username']</a>
+            </div>
+            <div class='content'>
+                $post['content']
+            </div>
         </div>
 </div>

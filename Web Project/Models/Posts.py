@@ -8,8 +8,19 @@ class Posts():
         self.db = self.client.codesoldier
         self.Users = self.db.users
         self.Posts = self.db.posts
-        
+
     def insert_post(self, data):
-        inserted = self.Posts.insert({"username": data.username, "content": data.content})
+        self.Posts.insert({"username": data.username, "content": data.content})
         return True
+
+    def get_all_posts(self):
+        all_posts = self.Posts.find()
+
+        new_posts = []
+
+        for post in all_posts:
+            post["user"] = self.Users.find_one({"username": post["username"]})
+            new_posts.append(post)
+
+        return new_posts
     

@@ -37,7 +37,11 @@ class home:
         if isCorrect:
             session_data["user"] = isCorrect
 
-        return render.home()
+        post_model = Posts.Posts()
+        all_posts = post_model.get_all_posts()
+
+
+        return render.home(all_posts)
 
 class login:
     def GET(self):
