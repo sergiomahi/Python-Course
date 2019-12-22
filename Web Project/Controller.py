@@ -1,5 +1,5 @@
 import web   
-from Models import RegisterModel, LoginModel
+from Models import RegisterModel, LoginModel, Posts
 
 web.config.debug = False
 
@@ -9,7 +9,8 @@ urls = (
     '/register', 'register',
     '/postregistration', 'postRegistration',
     '/check-login', 'checkLogin',
-    '/logout', 'logout'
+    '/logout', 'logout',
+    '/post-activity', 'postActivity'
     
 )
 
@@ -27,6 +28,15 @@ render = web.template.render(TEMPLATE_PATH, base=BASE_FILE, globals={'session': 
 
 class home:
     def GET(self):
+        # Autologin.
+        data = type('obj', (object,), {"username": "sergiomahi", "password": "sergiomahi"}) 
+
+        login = LoginModel.LoginModel()
+
+        isCorrect = login.check_user(data)
+        if isCorrect:
+            session_data["user"] = isCorrect
+
         return render.home()
 
 class login:
@@ -65,6 +75,19 @@ class postRegistration:
         reg_model.insert_user(data)
 
         return data.username
+
+class postActivity:
+    def POST(self):
+        data = web.input()
+        data['username'] = session_data['user']['username']
+
+        post_model = Posts.Posts()
+        post_model.insert_post(data)
+
+        return "success"
+    
+    
+        
 
 if __name__ == "__main__":
     app.run()

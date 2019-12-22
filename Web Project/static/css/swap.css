@@ -40,7 +40,8 @@
 }
 
 .post {
-    background-color: black;
+    border-color: turquoise;
+    border: 1px;
     position: absolute;
     left: 40%;
 }
@@ -48,4 +49,13 @@
 .post-input {
     height: 20vh;
     width: 25vh;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+}
+
+#app {
+    background-color: rgb(240,240,240);
 }
