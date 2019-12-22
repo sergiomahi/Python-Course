@@ -20,9 +20,32 @@
     backface-visibility: hidden;
 }
 
+
 .btn {
     background-color: lightblue;
     margin: 1vw;
     border-width: 0.2vw;
     border-color: black;
+}
+
+.post-box {
+    display: block;
+    margin-top: 2vh;
+    text-align: center;
+}
+
+.inside-post {
+    display: block;
+
+}
+
+.post {
+    background-color: black;
+    position: absolute;
+    left: 40%;
+}
+
+.post-input {
+    height: 20vh;
+    width: 25vh;
 }
