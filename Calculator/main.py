@@ -1,47 +1,55 @@
 import sys
-from PyQt5.QtWidgets import (QWidget, QApplication, QHBoxLayout, QLineEdit,
-                             QVBoxLayout, QPushButton, QLabel)
+from  PyQt5.QtWidgets import *
+from  PyQt5.QtGui     import *
+from  PyQt5.QtCore    import *
 
-class MainWindow(QWidget):
+class Application(QWidget):
     def __init__(self):
-        super().__init__() # This supper is related to QWidget
+        super().__init__()
 
-        self.init_ui()
+        self.setWindowTitle("Calculator")
+        self.createApp()
 
-    def init_ui(self):
-        self.text_label = QLabel("There has been no name entered so I can't do anything yet.")
-        self.label = QLabel("Name: ")
-        self.name_input = QLineEdit()
+    def createApp(self):
+        # Create grid.
+        grid = QGridLayout()
 
-        self.button = QPushButton("Set name")
+        results = QLineEdit()
+        grid.addWidget(results, 0, 0, 1, 4)
 
-        self.button.clicked.connect(self.alterName)
+        buttons = ["AC", "C", "CE", "/", 
+                    7, 8, 9, "*",
+                    4, 5, 6, "-",
+                    1, 2, 3, "+",
+                    0, ".", "=" ]
 
-        h = QHBoxLayout()
 
-        h.addWidget(self.label)
-        h.addWidget(self.name_input)
-        
-        v = QVBoxLayout()
+        row = 1
+        col = 0
 
-        v.addWidget(self.text_label)
-        v.addLayout(h)
+        for button in buttons:
+            if col > 3:
+                col = 0
+                row += 1
+            
+            if button == 0:
+                grid.addWidget(QPushButton(str(button)), row, col, 1, 2)
+                col += 1
+            else:
+                grid.addWidget(QPushButton(str(button)), row, col, 1, 1)
 
-        v.addWidget(self.button)
+            col += 1
 
-        self.setLayout(v)
-        self.setWindowTitle("Nothing has been clicked.")
+       
 
+        self.setLayout(grid)
         self.show()
+    
 
-    def alterName(self):
-        inputted_text = self.name_input.text()
-        our_string = "Hello {}".format(inputted_text)
-        self.text_label.setText(our_string)
-        self.setWindowTitle(inputter_text + "Window")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    window = MainWindow()
+    window = Application()
+
     sys.exit(app.exec_())
