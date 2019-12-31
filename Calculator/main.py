@@ -1,4 +1,5 @@
 import sys
+import math
 from  PyQt5.QtWidgets import *
 from  PyQt5.QtGui     import *
 from  PyQt5.QtCore    import *
@@ -12,8 +13,23 @@ class Button():
         self.b.clicked.connect(lambda: self.handleInput(self.text))
 
     def handleInput(self, v):
-        print("Clicked {}".format(v) )
-
+        if (v == "="):
+            res = eval(self.results.text())
+            self.results.setText(str(res))
+        elif (v == "AC"):
+            self.results.setText("")
+        elif (v == "√"):
+            number = float(self.results.text())
+            self.results.setText(str(math.sqrt(number)))
+        elif (v == "C"):
+            current_value = self.results.text()
+            self.results.setText(current_value[:-1])
+        else:
+            current_value = self.results.text()
+            new_value = current_value + v
+            self.results.setText(new_value)
+        
+        
 
 class Application(QWidget):
     def __init__(self):
@@ -29,7 +45,7 @@ class Application(QWidget):
         results = QLineEdit()
         grid.addWidget(results, 0, 0, 1, 4)
 
-        buttons = ["AC", "C", "CE", "/", 
+        buttons = ["AC", "√", "C", "/", 
                     7, 8, 9, "*",
                     4, 5, 6, "-",
                     1, 2, 3, "+",
