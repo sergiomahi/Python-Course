@@ -33,10 +33,11 @@ Introduction to PyMongo
 
 ## Web Project
 
-Using Python and the library web to create a simple web page including connection to a DataBase and auten
+Using Python and the library web to create a simple web page including connection to a DataBase and authentication
+
+![](images/codeSoldiers.png)
 
 ## Web Scraper
 
 Using Python and beautifulSoup to scrap images. This script will ask you to enter the name of the thing you want to scrape and download a constant number of images of it.
 
-![](images/codeSoldiers.png)
