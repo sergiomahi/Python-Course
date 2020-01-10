@@ -24,7 +24,8 @@ Using Python and Django created a simple web page connected to MongoDB.
 
 `python3 manage.py runserver`
 
-![](images/simpleWeb.png)
+<img source="images/simpleWeb.png" width="300" height="300" >
+
 
 ## PyMongo
 
