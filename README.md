@@ -20,7 +20,11 @@ Using python and matplotlib to display different types of charts.
 
 ## Django Project
 
-Using Python and Django created a simple web page connected to a MongoDB.
+Using Python and Django created a simple web page connected to MongoDB.
+
+`python3 manage.py runserver`
+
+![](images/simpleWeb.png)
 
 ## PyMongo
 
@@ -28,8 +32,10 @@ Introduction to PyMongo
 
 ## Web Project
 
-Using Python and the library web to create a simple web page.
+Using Python and the library web to create a simple web page including connection to a DataBase and auten
 
 ## Web Scraper
 
 Using Python and beautifulSoup to scrap images. This script will ask you to enter the name of the thing you want to scrape and download a constant number of images of it.
+
+![](images/codeSoldiers.png)
